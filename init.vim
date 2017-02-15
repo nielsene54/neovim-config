@@ -19,6 +19,13 @@ Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/Gundo'
 Plug 'neovim/node-host', { 'do': 'npm install' }
 Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'edma2/vim-pants'
+Plug 'solarnz/thrift.vim'
+Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-misc'
 call plug#end()
 set number
 
@@ -41,8 +48,12 @@ map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
 
 "CtrlP settings
-let g:ctrlp_custom_ignore= 'node_modules\|target\|amps-standalone\|bower_components|*.pyc'
+let g:ctrlp_custom_ignore= 'node_modules\|target\|amps-standalone\|bower_components\|*.pyc\|.pants.d'
 let g:ctrlp_show_hidden = 1
+nnoremap <leader>. :CtrlPTag<cr>
+
+"TagBar settings
+nnoremap ,b :TagbarToggle<CR>
 
 "Settings for Gundo
 nnoremap <F5> :GundoToggle<CR>
@@ -62,6 +73,12 @@ nnoremap <f9> :tabe %:p:h<cr>
 map <leader>n :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 set t_Co=256
 syntax on    "syntax highlighting
